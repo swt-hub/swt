@@ -1,0 +1,1432 @@
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:"Cairo",sans-serif;
+    color:#10282b;
+    background:#f7f9f9;
+    line-height:1.7;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.container{
+    width:min(1120px,calc(100% - 40px));
+    margin:auto;
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress{
+    position:fixed;
+    top:0;
+    right:0;
+    height:3px;
+    width:0;
+    background:#36d2ce;
+    z-index:9999;
+    box-shadow:0 0 15px #36d2ce;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:100vh;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            #0c4b52 0,
+            #062e34 32%,
+            #04171b 76%
+        );
+    color:#fff;
+}
+
+.hero:before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
+
+    background-size:70px 70px;
+}
+
+
+/* =========================
+   HERO ORBS
+========================= */
+
+.hero-orb{
+    position:absolute;
+    border-radius:50%;
+    border:1px solid rgba(70,226,220,.2);
+
+    box-shadow:
+        0 0 0 50px rgba(70,226,220,.025),
+        0 0 80px rgba(70,226,220,.08);
+}
+
+.orb-a{
+    width:430px;
+    height:430px;
+    left:-230px;
+    bottom:-180px;
+}
+
+.orb-b{
+    width:300px;
+    height:300px;
+    right:-120px;
+    top:90px;
+}
+
+
+/* =========================
+   NAV
+========================= */
+
+.nav{
+    height:90px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    position:relative;
+    z-index:5;
+}
+
+.nav-logo img{
+    width:145px;
+    display:block;
+}
+
+.nav-links{
+    display:flex;
+    gap:24px;
+    color:#b8d0d1;
+    font-size:13px;
+}
+
+.nav-links a:hover{
+    color:#54e1dc;
+}
+
+.nav-cta{
+    border:1px solid rgba(84,225,220,.5);
+    padding:8px 15px;
+    border-radius:9px;
+    color:#fff;
+    font-size:13px;
+}
+
+
+/* =========================
+   HERO GRID
+========================= */
+
+.hero-grid{
+    min-height:calc(100vh - 90px);
+
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+
+    align-items:center;
+
+    gap:50px;
+
+    position:relative;
+    z-index:2;
+
+    padding-bottom:70px;
+}
+
+
+/* =========================
+   EYEBROW
+========================= */
+
+.eyebrow{
+    font-size:16px;
+    letter-spacing:1px;
+    line-height:1.6;
+    color:#38cbc7;
+    font-weight:800;
+}
+
+
+/* =========================
+   MANAGER CHIP
+========================= */
+
+.manager-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    margin-top:18px;
+
+    padding:7px 12px;
+
+    border:1px solid rgba(255,255,255,.14);
+
+    background:rgba(255,255,255,.05);
+
+    border-radius:100px;
+
+    color:#c8d8d9;
+
+    font-size:12px;
+}
+
+.manager-dot{
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:#39d2ce;
+
+    box-shadow:0 0 12px #39d2ce;
+}
+
+
+/* =========================
+   HERO TITLE
+========================= */
+
+.hero h1{
+    font-size:clamp(54px,7vw,88px);
+    line-height:1.06;
+
+    letter-spacing:-3px;
+
+    margin:25px 0 20px;
+
+    font-weight:800;
+}
+
+.hero h1 span,
+.section h2 span{
+    color:#38cbc7;
+}
+
+
+/* =========================
+   LEAD
+========================= */
+
+.lead{
+    max-width:620px;
+
+    color:#b3c9ca;
+
+    font-size:18px;
+
+    line-height:2;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.hero-actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+
+    margin-top:30px;
+}
+
+.btn{
+    padding:12px 21px;
+
+    border-radius:10px;
+
+    font-weight:800;
+    font-size:14px;
+
+    transition:.25s;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+.btn-primary{
+    background:#3bd2cd;
+    color:#052326;
+
+    box-shadow:
+        0 12px 30px
+        rgba(59,210,205,.18);
+}
+
+.btn-outline{
+    border:1px solid rgba(255,255,255,.25);
+
+    color:#fff;
+
+    background:rgba(255,255,255,.03);
+}
+
+
+/* =========================
+   HERO STATS
+========================= */
+
+.hero-mini{
+    display:flex;
+
+    gap:30px;
+
+    margin-top:45px;
+}
+
+.hero-mini div{
+    display:flex;
+    flex-direction:column;
+}
+
+.hero-mini strong{
+    font-size:20px;
+}
+
+.hero-mini span{
+    font-size:10px;
+    color:#789b9d;
+}
+
+
+/* =========================
+   HERO VISUAL
+========================= */
+
+.hero-visual{
+    min-height:520px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    position:relative;
+}
+
+
+/* =========================
+   LOGO CARD
+========================= */
+
+.logo-card{
+    width:min(430px,85%);
+
+    padding:45px 25px 30px;
+
+    border:1px solid rgba(102,226,220,.25);
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.13),
+            rgba(255,255,255,.035)
+        );
+
+    backdrop-filter:blur(12px);
+
+    box-shadow:
+        0 30px 80px
+        rgba(0,0,0,.28);
+
+    text-align:center;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.logo-card img{
+    width:100%;
+
+    position:relative;
+    z-index:1;
+
+    border-radius:14px;
+}
+
+.logo-card span{
+    display:block;
+
+    color:#7eaaac;
+
+    font-size:9px;
+
+    letter-spacing:4px;
+
+    margin-top:25px;
+}
+
+
+/* =========================
+   SCAN
+========================= */
+
+.scan-line{
+    position:absolute;
+
+    left:10%;
+    right:10%;
+
+    height:1px;
+
+    background:#51e2de;
+
+    box-shadow:0 0 15px #51e2de;
+
+    top:30%;
+
+    opacity:.6;
+
+    animation:
+        scan 4s ease-in-out infinite;
+}
+
+@keyframes scan{
+
+    0%,
+    100%{
+        transform:translateY(-80px);
+        opacity:.1;
+    }
+
+    50%{
+        transform:translateY(180px);
+        opacity:.8;
+    }
+
+}
+
+
+/* =========================
+   FLOATING CARDS
+========================= */
+
+.floating-card{
+    position:absolute;
+
+    padding:14px 18px;
+
+    border-radius:14px;
+
+    background:rgba(6,40,45,.84);
+
+    border:1px solid rgba(80,220,216,.25);
+
+    backdrop-filter:blur(12px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,.25);
+
+    min-width:150px;
+}
+
+.floating-card span{
+    font-size:10px;
+    color:#42d4cf;
+    display:block;
+}
+
+.floating-card b{
+    display:block;
+    font-size:18px;
+}
+
+.floating-card small{
+    color:#8eadaf;
+    font-size:10px;
+}
+
+.card-1{
+    right:0;
+    top:22%;
+}
+
+.card-2{
+    left:0;
+    bottom:20%;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section{
+    padding:110px 0;
+}
+
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-title h2{
+    font-size:clamp(38px,5vw,62px);
+
+    line-height:1.2;
+
+    margin:10px 0;
+
+    font-weight:800;
+
+    letter-spacing:-1.5px;
+}
+
+.section-title p{
+    color:#688183;
+    max-width:650px;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.two-col{
+    display:grid;
+
+    grid-template-columns:.8fr 1.2fr;
+
+    gap:80px;
+}
+
+.about-text .big{
+    font-size:23px;
+
+    line-height:1.9;
+
+    font-weight:600;
+
+    color:#244447;
+}
+
+.about-text p{
+    color:#61787a;
+}
+
+.quote{
+    margin-top:30px;
+
+    border-right:3px solid #2cc7c2;
+
+    padding:12px 18px;
+
+    color:#0b696d;
+
+    background:#eff8f8;
+
+    border-radius:10px;
+}
+
+
+/* =========================
+   ABOUT TITLE FIX
+========================= */
+
+.about .section-title h2{
+    font-size:clamp(42px,5vw,68px);
+
+    line-height:1.18;
+
+    white-space:nowrap;
+}
+
+.about .section-title h2 span{
+    white-space:nowrap;
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:14px;
+
+    margin-top:60px;
+}
+
+.stats div{
+    padding:25px;
+
+    border:1px solid #dce7e7;
+
+    background:#fff;
+
+    border-radius:16px;
+}
+
+.stats strong{
+    display:block;
+
+    font-size:25px;
+
+    color:#0a6267;
+}
+
+.stats span{
+    font-size:12px;
+
+    color:#6e8384;
+}
+
+
+/* =========================
+   DARK SECTION
+========================= */
+
+.dark-section{
+    background:#06272c;
+
+    color:#fff;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.centered{
+    text-align:center;
+}
+
+.centered h2{
+    margin-bottom:55px;
+}
+
+
+/* =========================
+   VISION
+========================= */
+
+.vision-grid{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:18px;
+}
+
+.vision-card{
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    background:
+        rgba(255,255,255,.045);
+
+    border-radius:22px;
+
+    min-height:320px;
+
+    padding:
+        40px
+        42px
+        46px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-start;
+}
+
+.vision-card.featured{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(36,197,192,.18),
+            rgba(255,255,255,.035)
+        );
+
+    border-color:
+        rgba(56,203,199,.3);
+}
+
+.icon{
+    font-size:30px;
+    color:#4ce0db;
+}
+
+.card-kicker{
+    color:#47d5d1;
+
+    font-size:15px;
+
+    font-weight:800;
+
+    margin-top:18px;
+}
+
+.vision-card h3{
+    font-size:
+        clamp(
+            25px,
+            2.2vw,
+            31px
+        );
+
+    line-height:1.45;
+
+    margin:
+        10px 0
+        14px;
+}
+
+.vision-card p{
+    color:#aac2c3;
+
+    margin:0;
+
+    font-size:15px;
+
+    line-height:2.05;
+}
+
+
+/* =========================
+   VALUES
+========================= */
+
+.values{
+    background:#fff;
+}
+
+.values-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap:12px;
+
+    margin-top:40px;
+}
+
+.value{
+    padding:25px 20px;
+
+    border:
+        1px solid
+        #dce6e6;
+
+    border-radius:16px;
+
+    background:#fbfdfd;
+
+    transition:.25s;
+}
+
+.value:hover{
+    transform:translateY(-7px);
+
+    border-color:#65d8d4;
+
+    box-shadow:
+        0 15px 35px
+        rgba(5,55,59,.08);
+}
+
+.value span{
+    color:#2abbb7;
+
+    font-size:15px;
+
+    font-weight:800;
+}
+
+.value b{
+    display:block;
+
+    font-size:19px;
+
+    margin:25px 0 5px;
+}
+
+.value p{
+    font-size:12px;
+
+    color:#718486;
+
+    margin:0;
+}
+
+/* =====================================================
+   SERVICES
+===================================================== */
+
+.services {
+    background: #f5fbfb;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    direction: rtl;
+}
+
+.service-card {
+    position: relative;
+    overflow: hidden;
+
+    background: #fff;
+
+    border: 1px solid rgba(8, 83, 90, .09);
+    border-radius: 22px;
+
+    box-shadow: 0 12px 35px rgba(4, 55, 61, .08);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow: 0 20px 45px rgba(4, 55, 61, .14);
+}
+
+
+/* رقم الخدمة 01 - 06 */
+
+.service-number {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    z-index: 5;
+
+    min-width: 40px;
+    height: 31px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 9px;
+
+    color: #07535a;
+    background: rgba(255, 255, 255, .94);
+
+    border-radius: 9px;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .06);
+}
+
+
+/* =====================================================
+   SERVICE IMAGE
+   للصور PNG المجسمة
+===================================================== */
+
+.service-image {
+    width: 100%;
+    height: 255px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 18px 25px 5px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(16, 191, 193, .07),
+            transparent 68%
+        );
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+    object-position: center;
+
+    transition: transform .45s ease;
+}
+
+.service-card:hover .service-image img {
+    transform: scale(1.04);
+}
+
+
+/* =====================================================
+   SERVICE CONTENT
+===================================================== */
+
+.service-content {
+    padding: 23px 25px 27px;
+
+    text-align: right;
+}
+
+.service-content h3 {
+    margin-bottom: 9px;
+
+    color: #07535a;
+
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.service-content p {
+    margin: 0;
+
+    color: #6d8285;
+
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+
+/* =====================================================
+   SERVICES RESPONSIVE
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service-image {
+        height: 255px;
+    }
+
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-section{
+    background:
+        linear-gradient(
+            135deg,
+            #06262b,
+            #0a4045
+        );
+
+    color:#fff;
+}
+
+.contact-wrap{
+    display:grid;
+
+    grid-template-columns:
+        .85fr 1.15fr;
+
+    gap:80px;
+
+    align-items:center;
+}
+
+.contact-wrap p{
+    color:#9eb8b9;
+}
+
+.contact-list{
+    display:grid;
+    gap:10px;
+}
+
+.contact-item{
+    display:grid;
+
+    grid-template-columns:
+        120px
+        1fr
+        30px;
+
+    align-items:center;
+
+    padding:18px 20px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    background:
+        rgba(255,255,255,.045);
+
+    border-radius:13px;
+
+    transition:.2s;
+}
+
+.contact-item:hover{
+    border-color:#3ed1cc;
+
+    transform:translateX(-4px);
+}
+
+.contact-item span{
+    font-size:11px;
+    color:#78a1a3;
+}
+
+.contact-item b{
+    font-size:14px;
+}
+
+.contact-item i{
+    color:#42d3cf;
+    font-style:normal;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#04171a;
+
+    color:#6f8e90;
+
+    padding:25px 0;
+}
+
+.footer-inner{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    font-size:10px;
+}
+
+.footer-inner img{
+    width:105px;
+
+    background:#fff;
+
+    border-radius:6px;
+}
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+.reveal{
+    opacity:0;
+
+    transform:translateY(35px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.reveal.visible{
+    opacity:1;
+
+    transform:none;
+}
+
+.delay-1{
+    transition-delay:.12s;
+}
+
+.delay-2{
+    transition-delay:.24s;
+}
+
+
+/* =====================================================
+   SWT - FINAL FIXES
+===================================================== */
+
+
+/* =========================
+   عبارة اجعل الخطوة الأولى ذكية
+========================= */
+
+.contact-intro h2 {
+    font-size: clamp(42px, 4.5vw, 58px);
+    line-height: 1.35;
+}
+
+.contact-intro h2 span {
+    color: #10bfc1;
+}
+
+
+/* =========================
+   ترتيب أرقام التواصل
+   بدون تغيير اتجاه الصفحة
+========================= */
+
+.contact-item b {
+    direction: rtl;
+    unicode-bidi: normal;
+}
+
+.contact-ltr {
+    direction: ltr;
+    unicode-bidi: isolate;
+
+    display: inline-block;
+
+    white-space: nowrap;
+
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* =========================
+   الشعار بدون خلفية
+========================= */
+
+.nav-logo img,
+.logo-card img,
+.footer-inner img {
+    background: transparent !important;
+    object-fit: contain;
+}
+
+
+/* =========================
+   تكبير أرقام الأقسام
+   01 / 02 / 03
+========================= */
+
+.about .eyebrow,
+.dark-section .eyebrow,
+.values .eyebrow,
+.services .eyebrow,
+.contact-section .eyebrow {
+    font-size: 19px;
+    font-weight: 800;
+}
+
+
+/* =========================
+   الأرقام والإيميل أبيض وحجم متجاوب
+========================= */
+
+.contact-item b,
+.contact-item b *,
+.contact-item a,
+.contact-item a *,
+.contact-ltr {
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    font-size: clamp(15px, 1.6vw, 22px) !important;
+    letter-spacing: .3px;
+}
+
+/* العنوان الصغير (واتساب / الهاتف / البريد) يبقى رمادي */
+.contact-item > span:first-child {
+    font-size: clamp(11px, 1vw, 13px) !important;
+    color: #78a1a3 !important;
+    font-weight: 500 !important;
+}
+
+
+/* =====================================================
+   TABLET (آيباد وأي شاشة أقل من 900px)
+===================================================== */
+
+@media(max-width:900px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero-grid,
+    .two-col,
+    .vision-grid,
+    .contact-wrap{
+        grid-template-columns:1fr;
+    }
+
+    .hero-grid{
+        padding-top:40px;
+    }
+
+    .hero-visual{
+        min-height:440px;
+    }
+
+    .values-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .service-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .about .section-title h2{
+        white-space:normal;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE (جوال أقل من 600px)
+===================================================== */
+
+@media(max-width:600px){
+
+    .container{
+        width:min(
+            calc(100% - 28px),
+            1120px
+        );
+    }
+
+    .nav{
+        height:75px;
+    }
+
+    .nav-logo img{
+        width:125px;
+    }
+
+    .nav-cta{
+        font-size:11px;
+        padding:7px 10px;
+    }
+
+    .hero h1{
+        font-size:49px;
+        letter-spacing:-2px;
+    }
+
+    .lead{
+        font-size:15px;
+    }
+
+    .hero-mini{
+        gap:18px;
+        margin-top:35px;
+    }
+
+    .hero-mini strong{
+        font-size:17px;
+    }
+
+    .hero-visual{
+        min-height:390px;
+    }
+
+    .logo-card{
+        width:95%;
+        padding:30px 15px 22px;
+    }
+
+    .floating-card{
+        display:none;
+    }
+
+    .section{
+        padding:75px 0;
+    }
+
+    .stats,
+    .service-grid{
+        grid-template-columns:1fr;
+    }
+
+    .values-grid{
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .section-title h2{
+        font-size:39px;
+    }
+
+    .about .section-title h2{
+        font-size:42px;
+        white-space:normal;
+    }
+
+    .about-text .big{
+        font-size:19px;
+    }
+
+    .vision-card{
+        min-height:0;
+
+        padding:
+            30px
+            25px
+            34px;
+    }
+
+    .vision-card .card-kicker{
+        font-size:14px;
+    }
+
+    .vision-card h3{
+        font-size:24px;
+    }
+
+    .vision-card p{
+        font-size:14px;
+        line-height:2;
+    }
+
+    /* الكونتاكت على الجوال */
+    .contact-item{
+        grid-template-columns:
+            90px
+            1fr
+            20px;
+
+        padding:15px;
+    }
+
+    .contact-item b,
+    .contact-item b *,
+    .contact-item a,
+    .contact-item a *,
+    .contact-ltr {
+        font-size: 14px !important;
+    }
+
+    .contact-intro h2 {
+        font-size: 40px;
+    }
+
+    .about .eyebrow,
+    .dark-section .eyebrow,
+    .values .eyebrow,
+    .services .eyebrow,
+    .contact-section .eyebrow {
+        font-size: 18px;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .footer-inner img{
+        width:95px;
+    }
+}
+
+
+/* =====================================================
+   شاشات صغيرة جداً (أقل من 400px)
+===================================================== */
+
+@media (max-width: 400px) {
+
+    .contact-item b,
+    .contact-item b *,
+    .contact-item a,
+    .contact-item a *,
+    .contact-ltr {
+        font-size: 12.5px !important;
+    }
+
+    .contact-intro h2 {
+        font-size: 34px;
+    }
+
+    .hero h1{
+        font-size:42px;
+    }
+
+}
+
+
+/* =====================================================
+   شاشات كبيرة (كمبيوتر أكبر من 1400px)
+===================================================== */
+
+@media (min-width: 1400px) {
+
+    .contact-item b,
+    .contact-item b *,
+    .contact-item a,
+    .contact-item a *,
+    .contact-ltr {
+        font-size: 15px !important;
+    }
+
+}
+
+.services-grid {
+    direction: rtl;
+}
