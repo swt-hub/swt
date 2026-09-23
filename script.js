@@ -43,7 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (navToggle && navLinks) {
 
-        navToggle.addEventListener("click", function () {
+        navToggle.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
             navToggle.classList.toggle("active");
             navLinks.classList.toggle("open");
         });
@@ -66,6 +68,8 @@ document.addEventListener("DOMContentLoaded", function () {
 window.addEventListener("scroll", function () {
 
     const nav = document.querySelector(".nav");
+
+    if (!nav) return;
 
     if (window.scrollY > 30) {
         nav.classList.add("scrolled");
