@@ -57,6 +57,7 @@ a{
             #04171b 76%
         );
     color:#fff;
+    padding-top:90px;
 }
 
 .hero:before{
@@ -108,19 +109,38 @@ a{
 }
 
 
-/* =========================
-   NAV
-========================= */
+/* =====================================================
+   NAV — STICKY HEADER
+===================================================== */
 
 .nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+
     height:90px;
 
     display:flex;
     align-items:center;
     justify-content:space-between;
 
-    position:relative;
-    z-index:5;
+    padding:0 20px;
+
+    background:rgba(4,23,26,.85);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+
+    border-bottom:1px solid rgba(84,225,220,.08);
+
+    z-index:100;
+
+    transition:background .3s ease, box-shadow .3s ease;
+}
+
+.nav.scrolled{
+    background:rgba(4,23,26,.98);
+    box-shadow:0 8px 30px rgba(0,0,0,.35);
 }
 
 .nav-logo img{
@@ -145,6 +165,50 @@ a{
     border-radius:9px;
     color:#fff;
     font-size:13px;
+}
+
+
+/* =========================
+   NAV TOGGLE (الهامبرغر)
+========================= */
+
+.nav-toggle{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+
+    background:transparent;
+    border:none;
+    padding:6px;
+
+    cursor:pointer;
+    z-index:101;
+    margin-right:10px;
+}
+
+.nav-toggle span{
+    display:block;
+    width:26px;
+    height:2px;
+    background:#fff;
+    border-radius:2px;
+    transition:.3s ease;
+}
+
+.nav-toggle.active span:nth-child(1){
+    transform:translateY(7px) rotate(45deg);
+}
+.nav-toggle.active span:nth-child(2){
+    opacity:0;
+}
+.nav-toggle.active span:nth-child(3){
+    transform:translateY(-7px) rotate(-45deg);
+}
+
+
+/* إزاحة الأقسام عند التنقل بين الروابط */
+section[id]{
+    scroll-margin-top:90px;
 }
 
 
@@ -1055,19 +1119,39 @@ footer{
 
 .footer-inner{
     display:flex;
-    flex-direction:column;
+    flex-direction:row;
     align-items:center;
-    justify-content:center;
-    text-align:center;
-    gap:14px;
+    justify-content:space-between;
+    gap:20px;
     font-size:11px;
+    flex-wrap:wrap;
+    margin-bottom:16px;
 }
 
 .footer-right,
 .footer-center,
 .footer-left{
-    width:100%;
+    width:auto;
     text-align:center;
+}
+
+.footer-right{
+    order:1;
+}
+
+.footer-center{
+    order:2;
+    flex:1;
+    text-align:center;
+    letter-spacing:1px;
+    font-size:11px;
+}
+
+.footer-left{
+    order:3;
+    font-size:10px;
+    color:#5f7c7e;
+    text-align:right;
 }
 
 .footer-inner img{
@@ -1075,21 +1159,10 @@ footer{
     background:transparent;
     border-radius:6px;
     display:block;
-    margin:0 auto;
-}
-
-.footer-center{
-    letter-spacing:1px;
-    font-size:11px;
-}
-
-.footer-left{
-    font-size:10px;
-    color:#5f7c7e;
 }
 
 
-/* ===== روابط التواصل الاجتماعي ===== */
+/* ===== روابط التواصل الاجتماعي (أسفل الفوتر) ===== */
 
 .social-links{
     display:flex;
@@ -1097,7 +1170,6 @@ footer{
     justify-content:center;
     gap:14px;
     padding-top:16px;
-    margin-top:8px;
     border-top:1px solid rgba(255,255,255,.08);
     width:100%;
     flex-wrap:wrap;
@@ -1254,10 +1326,6 @@ footer{
 
 @media(max-width:900px){
 
-    .nav-links{
-        display:none;
-    }
-
     .hero-grid,
     .vision-grid,
     .contact-wrap{
@@ -1302,8 +1370,18 @@ footer{
         );
     }
 
+    /* ============================================
+       الهيدر الثابت + زر الهامبرغر
+    ============================================ */
+
     .nav{
-        height:75px;
+        height:75px !important;
+        padding:0 14px !important;
+        position:fixed !important;
+        top:0;
+        left:0;
+        right:0;
+        z-index:1000 !important;
     }
 
     .nav-logo img{
@@ -1315,14 +1393,92 @@ footer{
         padding:7px 10px;
     }
 
-    /* ============================================
-       1) الهيرو: منع الفراغ أسفل بطاقة الشعار
-    ============================================ */
+    .nav-toggle{
+        display:flex !important;
+        flex-direction:column;
+        gap:5px;
 
+        background:transparent;
+        border:none;
+        padding:6px;
+
+        cursor:pointer;
+        z-index:1001 !important;
+        margin-right:10px;
+    }
+
+    .nav-toggle span{
+        display:block;
+        width:26px;
+        height:2px;
+        background:#fff;
+        border-radius:2px;
+        transition:.3s ease;
+    }
+
+    .nav-toggle.active span:nth-child(1){
+        transform:translateY(7px) rotate(45deg);
+    }
+    .nav-toggle.active span:nth-child(2){
+        opacity:0;
+    }
+    .nav-toggle.active span:nth-child(3){
+        transform:translateY(-7px) rotate(-45deg);
+    }
+
+    /* القائمة المنسدلة */
+    .nav-links{
+        display:flex;
+        flex-direction:column;
+        position:fixed;
+        top:75px;
+        right:0;
+        left:0;
+
+        background:rgba(4,23,26,.98);
+        backdrop-filter:blur(12px);
+
+        padding:16px 20px;
+
+        gap:14px;
+
+        border-top:1px solid rgba(255,255,255,.08);
+
+        opacity:0;
+        visibility:hidden;
+        transform:translateY(-10px);
+        transition:.3s ease;
+
+        z-index:999;
+    }
+
+    .nav-links.open{
+        opacity:1;
+        visibility:visible;
+        transform:translateY(0);
+    }
+
+    .nav-links a{
+        font-size:14px;
+        color:#b8d0d1;
+        padding:6px 0;
+        border-bottom:1px solid rgba(255,255,255,.04);
+    }
+
+    /* إزاحة الهيرو لأن الهيدر fixed */
     .hero{
+        padding-top:75px !important;
         min-height:auto !important;
         padding-bottom:20px !important;
     }
+
+    section[id]{
+        scroll-margin-top:75px;
+    }
+
+    /* ============================================
+       الهيرو
+    ============================================ */
 
     .hero-grid{
         min-height:auto !important;
@@ -1430,7 +1586,7 @@ footer{
     }
 
     /* ============================================
-       2) خدماتنا: عمودان + إظهار الصور
+       خدماتنا
     ============================================ */
 
     .services-grid{
@@ -1480,7 +1636,7 @@ footer{
     }
 
     /* ============================================
-       3) الكونتاكت على الجوال
+       الكونتاكت
     ============================================ */
 
     .contact-item{
@@ -1514,7 +1670,7 @@ footer{
     }
 
     /* ============================================
-       4) الفوتر على الجوال
+       الفوتر على الجوال: عمودي ومركزي
     ============================================ */
 
     footer{
@@ -1522,11 +1678,21 @@ footer{
     }
 
     .footer-inner{
-        gap:10px !important;
+        flex-direction:column !important;
+        gap:12px !important;
+        margin-bottom:14px !important;
+    }
+
+    .footer-right,
+    .footer-center,
+    .footer-left{
+        width:100% !important;
+        text-align:center !important;
     }
 
     .footer-inner img{
         width:90px !important;
+        margin:0 auto !important;
     }
 
     .social-links{
@@ -1543,10 +1709,7 @@ footer{
         font-size:12px !important;
     }
 
-    /* ============================================
-       5) منع التمرير الأفقي
-    ============================================ */
-
+    /* منع التمرير الأفقي */
     html, body{
         overflow-x: hidden !important;
         max-width: 100% !important;
