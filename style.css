@@ -1459,7 +1459,69 @@ footer{
 
 }
 
+/* ===== روابط التواصل الاجتماعي في الفوتر ===== */
+.social-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 20px 0 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
 
+.social-links a {
+    color: #ffffff;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-links a:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.social-links svg {
+    width: 22px;
+    height: 22px;
+}
+
+.social-handle {
+    color: #ffffff;
+    opacity: 0.8;
+    font-size: 0.95rem;
+    font-weight: 500;
+    direction: ltr;
+}
+
+.social-divider {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 1.2rem;
+}
+
+.social-whatsapp {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #ffffff;
+    opacity: 0.8;
+    font-size: 0.95rem;
+    direction: ltr;
+    transition: opacity 0.3s ease;
+}
+
+.social-whatsapp:hover {
+    opacity: 1;
+}
+
+.social-whatsapp svg {
+    width: 18px;
+    height: 18px;
+}
 /* =====================================================
    شاشات كبيرة (كمبيوتر أكبر من 1400px)
 ===================================================== */
