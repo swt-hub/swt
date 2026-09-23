@@ -110,18 +110,42 @@ a{
 
 
 /* =====================================================
-   NAV
+   NAV — FIXED HEADER (ثابت أثناء التمرير)
 ===================================================== */
 
-.nav{
-    position:relative;
-    z-index:5;
+.nav,
+.nav.container{
+    position:fixed !important;
+    top:0;
+    left:0;
+    right:0;
+
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 !important;
 
     height:90px;
+
+    padding:0 40px;
 
     display:flex;
     align-items:center;
     justify-content:space-between;
+
+    background:rgba(4,23,26,.85);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+
+    border-bottom:1px solid rgba(84,225,220,.08);
+
+    z-index:1000;
+
+    transition:background .3s ease, box-shadow .3s ease;
+}
+
+.nav.scrolled{
+    background:rgba(4,23,26,.98);
+    box-shadow:0 8px 30px rgba(0,0,0,.35);
 }
 
 .nav-logo img{
@@ -157,7 +181,7 @@ a{
 
 
 /* =========================
-   NAV TOGGLE (مخفي دائماً)
+   NAV TOGGLE (مخفي)
 ========================= */
 
 .nav-toggle{
@@ -165,7 +189,7 @@ a{
 }
 
 
-/* إزاحة الأقسام */
+/* إزاحة الأقسام عند التنقل */
 section[id]{
     scroll-margin-top:90px;
 }
@@ -1121,7 +1145,7 @@ footer{
 }
 
 
-/* ===== روابط التواصل الاجتماعي (أسفل الفوتر) ===== */
+/* ===== روابط التواصل الاجتماعي ===== */
 
 .social-links{
     display:flex;
@@ -1196,10 +1220,7 @@ footer{
 ===================================================== */
 
 
-/* =========================
-   عبارة اجعل الخطوة الأولى ذكية
-========================= */
-
+/* عبارة اجعل الخطوة الأولى ذكية */
 .contact-intro h2 {
     font-size: clamp(42px, 4.5vw, 58px);
     line-height: 1.35;
@@ -1210,10 +1231,7 @@ footer{
 }
 
 
-/* =========================
-   ترتيب أرقام التواصل
-========================= */
-
+/* ترتيب أرقام التواصل */
 .contact-item b {
     direction: rtl;
     unicode-bidi: normal;
@@ -1231,10 +1249,7 @@ footer{
 }
 
 
-/* =========================
-   الشعار بدون خلفية
-========================= */
-
+/* الشعار بدون خلفية */
 .nav-logo img,
 .logo-card img,
 .footer-inner img {
@@ -1243,10 +1258,7 @@ footer{
 }
 
 
-/* =========================
-   تكبير أرقام الأقسام
-========================= */
-
+/* تكبير أرقام الأقسام */
 .about .eyebrow,
 .dark-section .eyebrow,
 .values .eyebrow,
@@ -1257,10 +1269,7 @@ footer{
 }
 
 
-/* =========================
-   الأرقام والإيميل: أبيض + حجم متجاوب
-========================= */
-
+/* الأرقام والإيميل */
 .contact-item b,
 .contact-item b *,
 .contact-item a,
@@ -1323,39 +1332,39 @@ footer{
 @media(max-width:700px){
 
     /* ============================================
-       الهيدر: يمتد بعرض الشاشة + غير ثابت
+       الهيدر الثابت على الجوال — يمتد بعرض الشاشة
     ============================================ */
 
     .nav,
     .nav.container{
-        position:relative !important;
-        top:auto !important;
-        left:auto !important;
-        right:auto !important;
+        position:fixed !important;
+        top:0 !important;
+        left:0 !important;
+        right:0 !important;
 
         width:100% !important;
         max-width:100% !important;
         margin:0 !important;
 
-        height:80px !important;
+        height:70px !important;
         padding:0 18px !important;
 
-        background:transparent !important;
-        backdrop-filter:none !important;
-        -webkit-backdrop-filter:none !important;
+        background:rgba(4,23,26,.95) !important;
+        backdrop-filter:blur(14px);
+        -webkit-backdrop-filter:blur(14px);
 
-        border-bottom:none !important;
-        box-shadow:none !important;
+        border-bottom:1px solid rgba(84,225,220,.08);
+        box-shadow:0 4px 20px rgba(0,0,0,.25);
 
         display:flex !important;
         align-items:center !important;
         justify-content:space-between !important;
 
-        z-index:5 !important;
+        z-index:9999 !important;
     }
 
     .nav-logo img{
-        width:120px;
+        width:115px;
         display:block;
     }
 
@@ -1365,7 +1374,7 @@ footer{
         display:none !important;
     }
 
-    /* زر الواتساب: شكل نظيف */
+    /* زر الواتساب */
     .nav-cta{
         display:inline-flex !important;
         align-items:center !important;
@@ -1384,18 +1393,23 @@ footer{
         margin:0 !important;
     }
 
+    /* إزاحة الهيرو */
+    .hero{
+        padding-top:70px !important;
+        min-height:auto !important;
+        padding-bottom:20px !important;
+    }
+
+    section[id]{
+        scroll-margin-top:70px !important;
+    }
+
     /* باقي العناصر */
     .container{
         width:min(
             calc(100% - 28px),
             1120px
         );
-    }
-
-    .hero{
-        min-height:auto !important;
-        padding-top:0 !important;
-        padding-bottom:20px !important;
     }
 
     .hero-grid{
