@@ -133,7 +133,7 @@ a{
 
     border-bottom:1px solid rgba(84,225,220,.08);
 
-    z-index:100;
+    z-index:1000;
 
     transition:background .3s ease, box-shadow .3s ease;
 }
@@ -159,12 +159,19 @@ a{
     color:#54e1dc;
 }
 
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
 .nav-cta{
     border:1px solid rgba(84,225,220,.5);
     padding:8px 15px;
     border-radius:9px;
     color:#fff;
     font-size:13px;
+    white-space:nowrap;
 }
 
 
@@ -175,15 +182,15 @@ a{
 .nav-toggle{
     display:none;
     flex-direction:column;
+    justify-content:center;
     gap:5px;
 
     background:transparent;
     border:none;
-    padding:6px;
+    padding:8px;
 
     cursor:pointer;
-    z-index:101;
-    margin-right:10px;
+    z-index:1001;
 }
 
 .nav-toggle span{
@@ -1375,7 +1382,7 @@ footer{
     ============================================ */
 
     .nav{
-        height:75px !important;
+        height:70px !important;
         padding:0 14px !important;
         position:fixed !important;
         top:0;
@@ -1385,45 +1392,20 @@ footer{
     }
 
     .nav-logo img{
-        width:125px;
+        width:115px;
+    }
+
+    .nav-actions{
+        gap:8px;
     }
 
     .nav-cta{
-        font-size:11px;
-        padding:7px 10px;
+        font-size:10px;
+        padding:6px 9px;
     }
 
     .nav-toggle{
         display:flex !important;
-        flex-direction:column;
-        gap:5px;
-
-        background:transparent;
-        border:none;
-        padding:6px;
-
-        cursor:pointer;
-        z-index:1001 !important;
-        margin-right:10px;
-    }
-
-    .nav-toggle span{
-        display:block;
-        width:26px;
-        height:2px;
-        background:#fff;
-        border-radius:2px;
-        transition:.3s ease;
-    }
-
-    .nav-toggle.active span:nth-child(1){
-        transform:translateY(7px) rotate(45deg);
-    }
-    .nav-toggle.active span:nth-child(2){
-        opacity:0;
-    }
-    .nav-toggle.active span:nth-child(3){
-        transform:translateY(-7px) rotate(-45deg);
     }
 
     /* القائمة المنسدلة */
@@ -1431,7 +1413,7 @@ footer{
         display:flex;
         flex-direction:column;
         position:fixed;
-        top:75px;
+        top:70px;
         right:0;
         left:0;
 
@@ -1461,19 +1443,19 @@ footer{
     .nav-links a{
         font-size:14px;
         color:#b8d0d1;
-        padding:6px 0;
+        padding:8px 0;
         border-bottom:1px solid rgba(255,255,255,.04);
     }
 
-    /* إزاحة الهيرو لأن الهيدر fixed */
+    /* إزاحة الهيرو */
     .hero{
-        padding-top:75px !important;
+        padding-top:70px !important;
         min-height:auto !important;
         padding-bottom:20px !important;
     }
 
     section[id]{
-        scroll-margin-top:75px;
+        scroll-margin-top:70px;
     }
 
     /* ============================================
@@ -1670,7 +1652,7 @@ footer{
     }
 
     /* ============================================
-       الفوتر على الجوال: عمودي ومركزي
+       الفوتر على الجوال
     ============================================ */
 
     footer{
