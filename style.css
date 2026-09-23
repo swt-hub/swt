@@ -1525,7 +1525,92 @@ footer{
 /* =====================================================
    شاشات كبيرة (كمبيوتر أكبر من 1400px)
 ===================================================== */
+/* ===== إصلاحات الجوال ===== */
+@media (max-width: 768px) {
 
+    /* الفوتر */
+    .footer-inner {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+        padding: 20px 16px;
+    }
+
+    .footer-right img {
+        max-width: 120px;
+        height: auto;
+    }
+
+    .footer-center {
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+
+    .footer-left {
+        font-size: 0.8rem;
+    }
+
+    /* روابط التواصل الاجتماعي */
+    .social-links {
+        gap: 12px;
+        padding: 16px 12px;
+    }
+
+    .social-links svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .social-handle,
+    .social-whatsapp {
+        font-size: 0.85rem;
+    }
+
+    /* بطاقة الشعار في الهيرو */
+    .logo-card {
+        padding: 24px 16px;
+    }
+
+    .logo-card img {
+        max-width: 180px;
+        height: auto;
+    }
+
+    /* صور الخدمات */
+    .service-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+        min-height: 160px;
+        background: #f0f4f5;
+    }
+
+    /* شبكة الخدمات */
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    /* قسم التواصل */
+    .contact-wrap {
+        padding: 0 16px;
+    }
+
+    .contact-item {
+        padding: 14px 16px;
+    }
+
+    .contact-item b {
+        font-size: 0.9rem;
+        word-break: break-word;
+    }
+
+    /* منع التمرير الأفقي */
+    body, html {
+        overflow-x: hidden;
+    }
+}
 @media (min-width: 1400px) {
 
     .contact-item b,
