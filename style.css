@@ -1,741 +1,2014 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:"Cairo",sans-serif;
+    color:#10282b;
+    background:#f7f9f9;
+    line-height:1.7;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.container{
+    width:min(1120px,calc(100% - 40px));
+    margin:auto;
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress{
+    position:fixed;
+    top:0;
+    right:0;
+    height:3px;
+    width:0;
+    background:#36d2ce;
+    z-index:9999;
+    box-shadow:0 0 15px #36d2ce;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:100vh;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            #0c4b52 0,
+            #062e34 32%,
+            #04171b 76%
+        );
+    color:#fff;
+    padding-top:90px;
+}
+
+.hero:before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
+
+    background-size:70px 70px;
+}
+
+
+/* =========================
+   HERO ORBS
+========================= */
+
+.hero-orb{
+    position:absolute;
+    border-radius:50%;
+    border:1px solid rgba(70,226,220,.2);
+
+    box-shadow:
+        0 0 0 50px rgba(70,226,220,.025),
+        0 0 80px rgba(70,226,220,.08);
+}
+
+.orb-a{
+    width:430px;
+    height:430px;
+    left:-230px;
+    bottom:-180px;
+}
+
+.orb-b{
+    width:300px;
+    height:300px;
+    right:-120px;
+    top:90px;
+}
+
+
+/* =====================================================
+   NAV — STICKY HEADER
+===================================================== */
+
+.nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+
+    height:90px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 20px;
+
+    background:rgba(4,23,26,.85);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+
+    border-bottom:1px solid rgba(84,225,220,.08);
+
+    z-index:1000;
+
+    transition:background .3s ease, box-shadow .3s ease;
+}
+
+.nav.scrolled{
+    background:rgba(4,23,26,.98);
+    box-shadow:0 8px 30px rgba(0,0,0,.35);
+}
 
-<meta name="theme-color" content="#06363b">
+.nav-logo img{
+    width:145px;
+    display:block;
+}
+
+.nav-links{
+    display:flex;
+    gap:24px;
+    color:#b8d0d1;
+    font-size:13px;
+}
 
-<title>SWT | المسار الذكي للحلول التقنية</title>
+.nav-links a:hover{
+    color:#54e1dc;
+}
 
-<meta name="description" content="SWT - المسار الذكي للحلول التقنية">
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
 
-<link rel="icon" href="images/SWT-logo-transparent.png">
+.nav-cta{
+    border:1px solid rgba(84,225,220,.5);
+    padding:8px 15px;
+    border-radius:9px;
+    color:#fff;
+    font-size:13px;
+    white-space:nowrap;
+}
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+/* =========================
+   NAV TOGGLE (الهامبرغر)
+========================= */
 
-<link rel="stylesheet" href="style.css">
-</head>
+.nav-toggle{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
 
-<body>
+    background:transparent;
+    border:none;
+    padding:8px;
 
-<div class="progress" id="progress"></div>
+    cursor:pointer;
+    z-index:1001;
+}
 
-<header class="hero" id="top">
+.nav-toggle span{
+    display:block;
+    width:26px;
+    height:2px;
+    background:#fff;
+    border-radius:2px;
+    transition:.3s ease;
+}
 
-<div class="hero-orb orb-a"></div>
-<div class="hero-orb orb-b"></div>
+.nav-toggle.active span:nth-child(1){
+    transform:translateY(7px) rotate(45deg);
+}
+.nav-toggle.active span:nth-child(2){
+    opacity:0;
+}
+.nav-toggle.active span:nth-child(3){
+    transform:translateY(-7px) rotate(-45deg);
+}
 
-<nav class="nav container">
 
-    <a class="nav-logo" href="#top">
-        <img src="images/SWT-logo-transparent.png" alt="SWT">
-    </a>
+/* إزاحة الأقسام عند التنقل بين الروابط */
+section[id]{
+    scroll-margin-top:90px;
+}
 
-    <div class="nav-links" id="navLinks">
-        <a href="#about">من نحن</a>
-        <a href="#vision">الرؤية والرسالة</a>
-        <a href="#values">القيم</a>
-        <a href="#services">الخدمات</a>
-        <a href="#contact">تواصل</a>
-    </div>
 
-    <div class="nav-actions">
-        <a class="nav-cta"
-        href="https://wa.me/967780848787"
-        target="_blank"
-        rel="noopener">
-        واتساب
-        </a>
+/* =========================
+   HERO GRID
+========================= */
 
-        <button class="nav-toggle" id="navToggle" aria-label="القائمة">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </div>
+.hero-grid{
+    min-height:calc(100vh - 90px);
 
-</nav>
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
 
+    align-items:center;
 
-<div class="hero-grid container">
+    gap:50px;
 
-<div class="hero-copy reveal">
+    position:relative;
+    z-index:2;
 
-<div class="eyebrow">
-SMART WAY TECHNOLOGY
-</div>
+    padding-bottom:70px;
+}
 
-<div class="manager-chip">
-<span class="manager-dot"></span>
-مدير الشركة · م/ مروان غييث
-</div>
 
-<h1>
-المسار الذكي<br>
-<span>للحلول التقنية.</span>
-</h1>
+/* =========================
+   EYEBROW
+========================= */
 
-<p class="lead">
-حلول تقنية متكاملة تجمع بين التكنولوجيا والابتكار
-لتجعل حياتك أقرب إلى الأمان والراحة والكفاءة.
-</p>
+.eyebrow{
+    font-size:16px;
+    letter-spacing:1px;
+    line-height:1.6;
+    color:#38cbc7;
+    font-weight:800;
+}
 
-<div class="hero-actions">
 
-<a class="btn btn-primary" href="#about">
-اكتشف SWT
-</a>
+/* =========================
+   MANAGER CHIP
+========================= */
 
-<a class="btn btn-outline"
-href="https://wa.me/967780848787"
-target="_blank"
-rel="noopener">
-تواصل معنا
-</a>
+.manager-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
 
-</div>
+    margin-top:18px;
 
+    padding:7px 12px;
 
-<div class="hero-mini">
+    border:1px solid rgba(255,255,255,.14);
 
-<div>
-<strong>2013</strong>
-<span>بداية المسيرة</span>
-</div>
+    background:rgba(255,255,255,.05);
 
-<div>
-<strong>6+</strong>
-<span>مجالات تقنية</span>
-</div>
+    border-radius:100px;
 
-<div>
-<strong>24/7</strong>
-<span>حلول ودعم</span>
-</div>
+    color:#c8d8d9;
 
-</div>
+    font-size:12px;
+}
 
-</div>
+.manager-dot{
+    width:7px;
+    height:7px;
 
+    border-radius:50%;
 
-<div class="hero-visual reveal delay-2">
+    background:#39d2ce;
 
-<div class="logo-card">
+    box-shadow:0 0 12px #39d2ce;
+}
 
-<img src="images/SWT-logo-transparent.png" alt="شعار SWT">
 
-<div class="scan-line"></div>
+/* =========================
+   HERO TITLE
+========================= */
 
-<span>
-SMART SOLUTIONS · BRIGHTER TOMORROW
-</span>
+.hero h1{
+    font-size:clamp(54px,7vw,88px);
+    line-height:1.06;
 
-</div>
+    letter-spacing:-3px;
 
+    margin:25px 0 20px;
 
-<div class="floating-card card-1">
-<span>01</span>
-<b>أمان</b>
-<small>حلول مراقبة وحماية</small>
-</div>
+    font-weight:800;
+}
 
+.hero h1 span,
+.section h2 span{
+    color:#38cbc7;
+}
 
-<div class="floating-card card-2">
-<span>02</span>
-<b>ذكاء</b>
-<small>تقنية أسهل لحياتك</small>
-</div>
 
-</div>
+/* =========================
+   LEAD
+========================= */
 
-</div>
+.lead{
+    max-width:620px;
 
-</header>
+    color:#b3c9ca;
 
+    font-size:18px;
 
-<main>
+    line-height:2;
+}
 
 
-<!-- =========================
-     ABOUT
-========================= -->
+/* =========================
+   BUTTONS
+========================= */
 
-<section class="section about" id="about">
+.hero-actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
 
-<div class="container">
+    margin-top:30px;
+}
 
-<div class="section-title centered reveal">
+.btn{
+    padding:12px 21px;
 
-<div class="eyebrow">
-01 · من نحن
-</div>
+    border-radius:10px;
 
-<h2>
-من هو <span>المسار الذكي؟</span>
-</h2>
+    font-weight:800;
+    font-size:14px;
 
-</div>
+    transition:.25s;
 
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+}
 
-<div class="about-text reveal delay-1">
+.btn:hover{
+    transform:translateY(-3px);
+}
 
-<p class="big">
-المسار الذكي للحلول التقنية هو طريقة متقدمة لتحسين وتلبية احتياجات العملاء،
-من خلال الدمج بين التكنولوجيا والابتكار.
-</p>
+.btn-primary{
+    background:#3bd2cd;
+    color:#052326;
 
-<p>
-تقدم الشركة حلولًا تقنية تشمل الأنظمة الذكية، الشبكات والاتصالات،
-أنظمة المراقبة والحماية، وأنظمة التحكم وغيرها،
-بهدف توفير بيئة أكثر راحة وكفاءة وأمانًا.
-</p>
+    box-shadow:
+        0 12px 30px
+        rgba(59,210,205,.18);
+}
 
-<div class="quote">
-«نجعل الحلول التقنية أقرب إلى حياتك»
-</div>
+.btn-outline{
+    border:1px solid rgba(255,255,255,.25);
 
-</div>
+    color:#fff;
 
-</div>
+    background:rgba(255,255,255,.03);
+}
 
 
-<div class="container stats reveal">
+/* =========================
+   HERO STATS
+========================= */
 
-<div>
-<strong>2013</strong>
-<span>تأسيس شركة المسار الذكي للحلول التقنية</span>
-</div>
+.hero-mini{
+    display:flex;
 
-<div>
-<strong>SWT</strong>
-<span>Smart Way Technology</span>
-</div>
+    gap:30px;
 
-<div>
-<strong>أمان · اتصال · ذكاء</strong>
-<span>هوية تقنية موجهة للمستقبل</span>
-</div>
+    margin-top:45px;
+}
 
-</div>
+.hero-mini div{
+    display:flex;
+    flex-direction:column;
+}
 
-</section>
+.hero-mini strong{
+    font-size:20px;
+}
 
+.hero-mini span{
+    font-size:10px;
+    color:#789b9d;
+}
 
 
-<!-- =========================
-     VISION
-========================= -->
+/* =========================
+   HERO VISUAL
+========================= */
 
-<section class="section dark-section" id="vision">
+.hero-visual{
+    min-height:520px;
 
-<div class="container">
+    display:flex;
 
-<div class="section-title centered reveal">
+    align-items:center;
+    justify-content:center;
 
-<div class="eyebrow">
-02 · الرؤية والرسالة
-</div>
+    position:relative;
+}
 
-<h2>
-نظرة واضحة نحو<br>
-<span>مستقبل أذكى.</span>
-</h2>
 
-</div>
+/* =========================
+   LOGO CARD
+========================= */
 
+.logo-card{
+    width:min(430px,85%);
 
-<div class="vision-grid">
+    padding:45px 25px 30px;
 
+    border:1px solid rgba(102,226,220,.25);
 
-<article class="vision-card reveal">
+    border-radius:28px;
 
-<div class="icon">
-◉
-</div>
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.13),
+            rgba(255,255,255,.035)
+        );
 
-<div class="card-kicker">
-رؤيتنا
-</div>
+    backdrop-filter:blur(12px);
 
-<h3>
-الحلول التقنية مفتاح لحياة أفضل
-</h3>
+    box-shadow:
+        0 30px 80px
+        rgba(0,0,0,.28);
 
-<p>
-جعل الحلول التقنية مفتاحًا لتحسين وتسهيل حياة تقنية ذكية ومبتكرة.
-</p>
+    text-align:center;
 
-</article>
+    position:relative;
 
+    overflow:hidden;
+}
 
-<article class="vision-card featured reveal delay-1">
+.logo-card img{
+    width:100%;
 
-<div class="icon">
-◉
-</div>
+    position:relative;
+    z-index:1;
 
-<div class="card-kicker">
-رسالتنا
-</div>
+    border-radius:14px;
+}
 
-<h3>
-حلول حديثة، بهوية تقنية واضحة
-</h3>
+.logo-card span{
+    display:block;
 
-<p>
-تقديم أحدث وأفضل الحلول والخدمات التقنية والشبكات
-بما يتوافق مع هويتنا كمسار للحلول التقنية.
-</p>
+    color:#7eaaac;
 
-</article>
+    font-size:9px;
 
+    letter-spacing:4px;
 
-</div>
+    margin-top:25px;
+}
 
-</div>
 
-</section>
+/* =========================
+   SCAN
+========================= */
 
+.scan-line{
+    position:absolute;
 
+    left:10%;
+    right:10%;
 
-<!-- =========================
-     VALUES
-========================= -->
+    height:1px;
 
-<section class="section values" id="values">
+    background:#51e2de;
 
-<div class="container">
+    box-shadow:0 0 15px #51e2de;
 
-<div class="section-title centered reveal">
+    top:30%;
 
-<div class="eyebrow">
-03 · قيمنا
-</div>
+    opacity:.6;
 
-<h2>
-مبادئ نبني بها<br>
-<span>كل حل.</span>
-</h2>
+    animation:
+        scan 4s ease-in-out infinite;
+}
 
-</div>
+@keyframes scan{
 
+    0%,
+    100%{
+        transform:translateY(-80px);
+        opacity:.1;
+    }
 
-<div class="values-grid">
+    50%{
+        transform:translateY(180px);
+        opacity:.8;
+    }
 
+}
 
-<article class="value reveal">
 
-<span>01</span>
+/* =========================
+   FLOATING CARDS
+========================= */
 
-<b>
-الابتكار
-</b>
+.floating-card{
+    position:absolute;
 
-<p>
-نبحث عن حلول وأفكار تقنية متجددة.
-</p>
+    padding:14px 18px;
 
-</article>
+    border-radius:14px;
 
+    background:rgba(6,40,45,.84);
 
-<article class="value reveal delay-1">
+    border:1px solid rgba(80,220,216,.25);
 
-<span>02</span>
+    backdrop-filter:blur(12px);
 
-<b>
-النزاهة
-</b>
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,.25);
 
-<p>
-وضوح وثقة في التعامل والعمل.
-</p>
+    min-width:150px;
+}
 
-</article>
+.floating-card span{
+    font-size:10px;
+    color:#42d4cf;
+    display:block;
+}
 
+.floating-card b{
+    display:block;
+    font-size:18px;
+}
 
-<article class="value reveal delay-2">
+.floating-card small{
+    color:#8eadaf;
+    font-size:10px;
+}
 
-<span>03</span>
+.card-1{
+    right:0;
+    top:22%;
+}
 
-<b>
-المسؤولية
-</b>
+.card-2{
+    left:0;
+    bottom:20%;
+}
 
-<p>
-التزام تجاه العميل وجودة التنفيذ.
-</p>
 
-</article>
+/* =========================
+   SECTIONS
+========================= */
 
+.section{
+    padding:110px 0;
+}
 
-<article class="value reveal">
 
-<span>04</span>
+/* =========================
+   SECTION TITLE
+========================= */
 
-<b>
-الشفافية
-</b>
+.section-title h2{
+    font-size:clamp(38px,5vw,62px);
 
-<p>
-معلومات واضحة وخدمة مبنية على الثقة.
-</p>
+    line-height:1.2;
 
-</article>
+    margin:10px 0;
 
+    font-weight:800;
 
-<article class="value reveal delay-1">
+    letter-spacing:-1.5px;
+}
 
-<span>05</span>
+.section-title p{
+    color:#688183;
+    max-width:650px;
+}
 
-<b>
-العمل الجماعي
-</b>
 
-<p>
-نتعاون لنصل إلى أفضل نتيجة.
-</p>
+/* =========================
+   ABOUT
+========================= */
 
-</article>
+.about-text{
+    max-width:820px;
+    margin:0 auto;
+    text-align:center;
+}
 
+.about-text .big{
+    font-size:23px;
 
-</div>
+    line-height:1.9;
 
-</div>
+    font-weight:600;
 
-</section>
+    color:#244447;
+}
 
+.about-text p{
+    color:#61787a;
+}
 
-<!-- =========================
-     SERVICES
-========================= -->
-<section class="services section" id="services">
+.quote{
+    margin-top:30px;
 
-    <div class="container">
+    border-right:3px solid #2cc7c2;
 
-        <div class="section-title centered reveal">
-            <div class="eyebrow">
-                04 · خدماتنا
-            </div>
+    padding:12px 18px;
 
-            <h2>
-                حلول <span>تقنية متكاملة.</span>
-            </h2>
+    color:#0b696d;
 
-            <p>
-                نقدم مجموعة متكاملة من الحلول التقنية الحديثة
-                لتوفير الأمان والراحة والكفاءة.
-            </p>
-        </div>
+    background:#eff8f8;
 
+    border-radius:10px;
 
-        <div class="services-grid">
+    text-align:right;
 
+    display:inline-block;
+}
 
-            <!-- الخدمة 01 -->
-            <article class="service-card reveal">
 
-                <div class="service-number">01</div>
+/* =========================
+   ABOUT TITLE FIX
+========================= */
 
-                <div class="service-image">
-                    <img
-                        src="images/1.png"
-                        alt="خدمة الإنترنت والاتصالات">
-                </div>
+.about .section-title h2{
+    font-size:clamp(42px,5vw,68px);
 
-                <div class="service-content">
+    line-height:1.18;
+}
 
-                    <h3>خدمة الإنترنت والاتصالات</h3>
+.about .section-title h2 span{
+    white-space:nowrap;
+}
 
-                    <p>
-                        حلول متكاملة للإنترنت والاتصالات والشبكات
-                        لضمان اتصال سريع ومستقر.
-                    </p>
 
-                </div>
+/* =========================
+   STATS
+========================= */
 
-            </article>
+.stats{
+    display:grid;
 
+    grid-template-columns:
+        repeat(3,1fr);
 
+    gap:14px;
 
-            <!-- الخدمة 02 -->
-            <article class="service-card reveal delay-1">
+    margin-top:60px;
+}
 
-                <div class="service-number">02</div>
+.stats div{
+    padding:25px;
 
-                <div class="service-image">
-                    <img
-                        src="images/2.png"
-                        alt="كاميرات المراقبة">
-                </div>
+    border:1px solid #dce7e7;
 
-                <div class="service-content">
+    background:#fff;
 
-                    <h3>كاميرات المراقبة</h3>
+    border-radius:16px;
+}
 
-                    <p>
-                        أنظمة مراقبة حديثة تساعد على حماية
-                        المنشآت ومتابعتها على مدار الساعة.
-                    </p>
+.stats strong{
+    display:block;
 
-                </div>
+    font-size:25px;
 
-            </article>
+    color:#0a6267;
+}
 
+.stats span{
+    font-size:12px;
 
+    color:#6e8384;
+}
 
-            <!-- الخدمة 03 -->
-            <article class="service-card reveal delay-2">
 
-                <div class="service-number">03</div>
+/* =========================
+   DARK SECTION
+========================= */
 
-                <div class="service-image">
-                    <img
-                        src="images/3.png"
-                        alt="نظام البيت الذكي">
-                </div>
+.dark-section{
+    background:#06272c;
 
-                <div class="service-content">
+    color:#fff;
 
-                    <h3>نظام البيت الذكي</h3>
+    position:relative;
 
-                    <p>
-                        حلول ذكية للتحكم في الإضاءة والأمان
-                        والأجهزة والتكييف بسهولة.
-                    </p>
+    overflow:hidden;
+}
 
-                </div>
+.centered{
+    text-align:center;
+}
 
-            </article>
+.centered h2{
+    margin-bottom:55px;
+}
 
+.section-title.centered p{
+    margin-left:auto;
+    margin-right:auto;
+}
 
 
-            <!-- الخدمة 04 -->
-            <article class="service-card reveal">
+/* =========================
+   VISION
+========================= */
 
-                <div class="service-number">04</div>
+.vision-grid{
+    display:grid;
 
-                <div class="service-image">
-                    <img
-                        src="images/4.png"
-                        alt="خدمة الصيانة">
-                </div>
+    grid-template-columns:
+        1fr 1fr;
 
-                <div class="service-content">
+    gap:18px;
+}
 
-                    <h3>خدمة الصيانة</h3>
+.vision-card{
+    border:
+        1px solid
+        rgba(255,255,255,.1);
 
-                    <p>
-                        صيانة ودعم فني للأنظمة والمعدات
-                        التقنية لضمان استمرارية العمل.
-                    </p>
+    background:
+        rgba(255,255,255,.045);
 
-                </div>
+    border-radius:22px;
 
-            </article>
+    min-height:320px;
 
+    padding:
+        40px
+        42px
+        46px;
 
+    display:flex;
 
-            <!-- الخدمة 05 -->
-            <article class="service-card reveal delay-1">
+    flex-direction:column;
 
-                <div class="service-number">05</div>
+    justify-content:flex-start;
+}
 
-                <div class="service-image">
-                    <img
-                        src="images/5.png"
-                        alt="شاشات LED المتطورة">
-                </div>
+.vision-card.featured{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(36,197,192,.18),
+            rgba(255,255,255,.035)
+        );
 
-                <div class="service-content">
+    border-color:
+        rgba(56,203,199,.3);
+}
 
-                    <h3>شاشات LED المتطورة</h3>
+.icon{
+    font-size:30px;
+    color:#4ce0db;
+    min-height:30px;
+}
 
-                    <p>
-                        حلول شاشات LED للعرض والإعلانات
-                        والمشاريع التجارية بجودة عالية.
-                    </p>
+.card-kicker{
+    color:#47d5d1;
 
-                </div>
+    font-size:15px;
 
-            </article>
+    font-weight:800;
 
+    margin-top:18px;
+}
 
+.vision-card h3{
+    font-size:
+        clamp(
+            25px,
+            2.2vw,
+            31px
+        );
 
-            <!-- الخدمة 06 -->
-            <article class="service-card reveal delay-2">
+    line-height:1.45;
 
-                <div class="service-number">06</div>
+    margin:
+        10px 0
+        14px;
+}
 
-                <div class="service-image">
-                    <img
-                        src="images/6.png"
-                        alt="أنظمة الحماية والإنذار">
-                </div>
+.vision-card p{
+    color:#aac2c3;
 
-                <div class="service-content">
+    margin:0;
 
-                    <h3>أنظمة الحماية والإنذار</h3>
+    font-size:15px;
 
-                    <p>
-                        أنظمة متطورة للحماية والإنذار والكشف
-                        المبكر عن الحرائق والمخاطر.
-                    </p>
+    line-height:2.05;
+}
 
-                </div>
 
-            </article>
+/* =========================
+   VALUES
+========================= */
 
+.values{
+    background:#fff;
+}
 
-        </div>
+.values-grid{
+    display:grid;
 
-    </div>
+    grid-template-columns:
+        repeat(5,1fr);
 
-</section>
+    gap:12px;
 
-<!-- =========================
-     CONTACT
-========================= -->
+    margin-top:40px;
+}
 
-<section class="section contact-section" id="contact">
+.value{
+    padding:25px 20px;
 
-    <div class="container">
+    border:
+        1px solid
+        #dce6e6;
 
-        <div class="section-title centered reveal">
+    border-radius:16px;
 
-            <div class="eyebrow">
-                05 · تواصل معنا
-            </div>
+    background:#fbfdfd;
 
-            <h2>
-                اجعل الخطوة<br>
-                <span>الأولى ذكية.</span>
-            </h2>
+    transition:.25s;
+}
 
-            <p>
-                للاستفسار أو طلب خدمة، تواصل معنا مباشرة.
-            </p>
+.value:hover{
+    transform:translateY(-7px);
 
-        </div>
+    border-color:#65d8d4;
 
+    box-shadow:
+        0 15px 35px
+        rgba(5,55,59,.08);
+}
 
-        <div class="contact-list reveal">
+.value span{
+    color:#2abbb7;
 
-            <!-- WhatsApp -->
-            <a
-                class="contact-item"
-                href="https://wa.me/967780848787"
-                target="_blank"
-                rel="noopener"
-            >
-                <span>واتساب</span>
+    font-size:15px;
 
-                <b>
-                    <span class="contact-ltr">780 848 787</span>
-                </b>
+    font-weight:800;
+}
 
-            </a>
+.value b{
+    display:block;
 
+    font-size:19px;
 
-            <!-- Phone -->
-            <a
-                class="contact-item"
-                href="tel:+967771502444"
-            >
-                <span>الهاتف</span>
+    margin:25px 0 5px;
+}
 
-                <b>
-                    <span class="contact-ltr">771 502 444</span>
-                </b>
+.value p{
+    font-size:12px;
 
-            </a>
+    color:#718486;
 
+    margin:0;
+}
 
-            <!-- Email -->
-            <a
-                class="contact-item"
-                href="mailto:SWT.maintance@gmail.com"
-            >
-                <span>البريد الإلكتروني</span>
 
-                <b>
-                    <span class="contact-ltr">
-                        SWT.maintance@gmail.com
-                    </span>
-                </b>
+/* =====================================================
+   SERVICES
+===================================================== */
 
-            </a>
+.services {
+    background: #f5fbfb;
+}
 
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    direction: rtl;
+}
 
-            <!-- Location -->
-            <a
-                class="contact-item"
-                href="https://www.google.com/maps/search/?api=1&query=إيراء%20بن%20محفوظ%20طابق%20الميزانين"
-                target="_blank"
-                rel="noopener"
-            >
-                <span>الموقع</span>
+.service-card {
+    position: relative;
+    overflow: hidden;
 
-                <b>
-                    أبراج بن محفوظ · طابق الميزانين
-                </b>
+    background: #fff;
 
-            </a>
+    border: 1px solid rgba(8, 83, 90, .09);
+    border-radius: 22px;
 
-        </div>
+    box-shadow: 0 12px 35px rgba(4, 55, 61, .08);
 
-    </div>
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+}
 
-</section>
+.service-card:hover {
+    transform: translateY(-6px);
 
-</main>
+    box-shadow: 0 20px 45px rgba(4, 55, 61, .14);
+}
 
 
-<!-- =========================
-     FOOTER
-========================= -->
-<footer>
+/* رقم الخدمة 01 - 06 */
 
-    <div class="container footer-inner">
+.service-number {
+    position: absolute;
+    top: 16px;
+    right: 16px;
 
-        <div class="footer-right">
-            <img src="images/SWT-logo-transparent.png" alt="SWT">
-        </div>
+    z-index: 5;
 
-        <div class="footer-center">
-            SMART WAY TECHNOLOGY
-        </div>
+    min-width: 40px;
+    height: 31px;
 
-        <div class="footer-left">
-            © SWT · حلول تقنية لحياة أذكى
-        </div>
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    </div>
+    padding: 0 9px;
 
-    <!-- أيقونات التواصل الاجتماعي -->
-    <div class="container social-links">
-        <a href="https://www.facebook.com/share/1B7nArNVFq/" target="_blank" rel="noopener" aria-label="فيسبوك">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-        </a>
-        <a href="https://www.instagram.com/sw.4tech" target="_blank" rel="noopener" aria-label="إنستغرام">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        </a>
-        <a href="https://www.tiktok.com/@sw.4tech" target="_blank" rel="noopener" aria-label="تيك توك">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/company/sw.4tech" target="_blank" rel="noopener" aria-label="لينكد إن">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <span class="social-handle">sw.4tech</span>
-    </div>
+    color: #07535a;
+    background: rgba(255, 255, 255, .94);
 
-</footer>
+    border-radius: 9px;
 
+    font-size: 13px;
+    font-weight: 800;
 
-<script src="script.js"></script>
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .06);
+}
 
-</body>
-</html>
+
+/* =====================================================
+   SERVICE IMAGE
+===================================================== */
+
+.service-image {
+    width: 100%;
+    height: 255px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 18px 25px 5px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(16, 191, 193, .07),
+            transparent 68%
+        );
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+    object-position: center;
+
+    transition: transform .45s ease;
+}
+
+.service-card:hover .service-image img {
+    transform: scale(1.04);
+}
+
+
+/* =====================================================
+   SERVICE CONTENT
+===================================================== */
+
+.service-content {
+    padding: 23px 25px 27px;
+
+    text-align: right;
+}
+
+.service-content h3 {
+    margin-bottom: 9px;
+
+    color: #07535a;
+
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.service-content p {
+    margin: 0;
+
+    color: #6d8285;
+
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+
+/* =====================================================
+   SERVICES RESPONSIVE
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-section{
+    background:
+        linear-gradient(
+            135deg,
+            #06262b,
+            #0a4045
+        );
+
+    color:#fff;
+}
+
+.contact-wrap{
+    display:grid;
+
+    grid-template-columns:
+        .85fr 1.15fr;
+
+    gap:80px;
+
+    align-items:center;
+}
+
+.contact-wrap p{
+    color:#9eb8b9;
+}
+
+.contact-list{
+    display:grid;
+    gap:10px;
+
+    max-width:720px;
+    margin:0 auto;
+    width:100%;
+}
+
+.contact-item{
+    display:grid;
+
+    grid-template-columns:
+        120px
+        1fr
+        30px;
+
+    align-items:center;
+
+    padding:18px 20px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    background:
+        rgba(255,255,255,.045);
+
+    border-radius:13px;
+
+    transition:.2s;
+}
+
+.contact-item:hover{
+    border-color:#3ed1cc;
+
+    transform:translateX(-4px);
+}
+
+.contact-item span{
+    font-size:11px;
+    color:#78a1a3;
+}
+
+.contact-item b{
+    font-size:14px;
+}
+
+.contact-item i{
+    color:#42d3cf;
+    font-style:normal;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#04171a;
+    color:#6f8e90;
+    padding:30px 0 20px;
+}
+
+.footer-inner{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    font-size:11px;
+    flex-wrap:wrap;
+    margin-bottom:16px;
+}
+
+.footer-right,
+.footer-center,
+.footer-left{
+    width:auto;
+    text-align:center;
+}
+
+.footer-right{
+    order:1;
+}
+
+.footer-center{
+    order:2;
+    flex:1;
+    text-align:center;
+    letter-spacing:1px;
+    font-size:11px;
+}
+
+.footer-left{
+    order:3;
+    font-size:10px;
+    color:#5f7c7e;
+    text-align:right;
+}
+
+.footer-inner img{
+    width:105px;
+    background:transparent;
+    border-radius:6px;
+    display:block;
+}
+
+
+/* ===== روابط التواصل الاجتماعي (أسفل الفوتر) ===== */
+
+.social-links{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    padding-top:16px;
+    border-top:1px solid rgba(255,255,255,.08);
+    width:100%;
+    flex-wrap:wrap;
+}
+
+.social-links a{
+    color:#ffffff;
+    opacity:.7;
+    transition:opacity .3s ease, transform .3s ease;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.social-links a:hover{
+    opacity:1;
+    transform:translateY(-2px);
+}
+
+.social-links svg{
+    width:20px;
+    height:20px;
+}
+
+.social-handle{
+    color:#ffffff;
+    opacity:.8;
+    font-size:13px;
+    font-weight:500;
+    direction:ltr;
+}
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+.reveal{
+    opacity:0;
+
+    transform:translateY(35px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.reveal.visible{
+    opacity:1;
+
+    transform:none;
+}
+
+.delay-1{
+    transition-delay:.12s;
+}
+
+.delay-2{
+    transition-delay:.24s;
+}
+
+
+/* =====================================================
+   SWT - FINAL FIXES
+===================================================== */
+
+
+/* =========================
+   عبارة اجعل الخطوة الأولى ذكية
+========================= */
+
+.contact-intro h2 {
+    font-size: clamp(42px, 4.5vw, 58px);
+    line-height: 1.35;
+}
+
+.contact-intro h2 span {
+    color: #10bfc1;
+}
+
+
+/* =========================
+   ترتيب أرقام التواصل
+========================= */
+
+.contact-item b {
+    direction: rtl;
+    unicode-bidi: normal;
+}
+
+.contact-ltr {
+    direction: ltr;
+    unicode-bidi: isolate;
+
+    display: inline-block;
+
+    white-space: nowrap;
+
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* =========================
+   الشعار بدون خلفية
+========================= */
+
+.nav-logo img,
+.logo-card img,
+.footer-inner img {
+    background: transparent !important;
+    object-fit: contain;
+}
+
+
+/* =========================
+   تكبير أرقام الأقسام
+========================= */
+
+.about .eyebrow,
+.dark-section .eyebrow,
+.values .eyebrow,
+.services .eyebrow,
+.contact-section .eyebrow {
+    font-size: 19px;
+    font-weight: 800;
+}
+
+
+/* =========================
+   الأرقام والإيميل: أبيض + حجم متجاوب
+========================= */
+
+.contact-item b,
+.contact-item b *,
+.contact-item a,
+.contact-item a *,
+.contact-ltr {
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    font-size: clamp(15px, 1.6vw, 22px) !important;
+    letter-spacing: .3px;
+}
+
+.contact-item > span:first-child {
+    font-size: clamp(11px, 1vw, 13px) !important;
+    color: #78a1a3 !important;
+    font-weight: 500 !important;
+}
+
+
+/* =====================================================
+   TABLET (أقل من 900px)
+===================================================== */
+
+@media(max-width:900px){
+
+    .hero-grid,
+    .vision-grid,
+    .contact-wrap{
+        grid-template-columns:1fr;
+    }
+
+    .hero-grid{
+        padding-top:40px;
+    }
+
+    .hero-visual{
+        min-height:440px;
+    }
+
+    .values-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .services-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .about .section-title h2{
+        white-space:normal;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE (أقل من 700px)
+===================================================== */
+
+@media(max-width:700px){
+
+    .container{
+        width:min(
+            calc(100% - 28px),
+            1120px
+        );
+    }
+
+    /* ============================================
+       الهيدر الثابت + زر الهامبرغر
+    ============================================ */
+
+    .nav{
+        height:70px !important;
+        padding:0 14px !important;
+        position:fixed !important;
+        top:0;
+        left:0;
+        right:0;
+        z-index:1000 !important;
+    }
+
+    .nav-logo img{
+        width:115px;
+    }
+
+    .nav-actions{
+        gap:8px;
+    }
+
+    .nav-cta{
+        font-size:10px;
+        padding:6px 9px;
+    }
+
+    .nav-toggle{
+        display:flex !important;
+    }
+
+    /* القائمة المنسدلة */
+    .nav-links{
+        display:flex;
+        flex-direction:column;
+        position:fixed;
+        top:70px;
+        right:0;
+        left:0;
+
+        background:rgba(4,23,26,.98);
+        backdrop-filter:blur(12px);
+
+        padding:16px 20px;
+
+        gap:14px;
+
+        border-top:1px solid rgba(255,255,255,.08);
+
+        opacity:0;
+        visibility:hidden;
+        transform:translateY(-10px);
+        transition:.3s ease;
+
+        z-index:999;
+    }
+
+    .nav-links.open{
+        opacity:1;
+        visibility:visible;
+        transform:translateY(0);
+    }
+
+    .nav-links a{
+        font-size:14px;
+        color:#b8d0d1;
+        padding:8px 0;
+        border-bottom:1px solid rgba(255,255,255,.04);
+    }
+
+    /* إزاحة الهيرو */
+    .hero{
+        padding-top:70px !important;
+        min-height:auto !important;
+        padding-bottom:20px !important;
+    }
+
+    section[id]{
+        scroll-margin-top:70px;
+    }
+
+    /* ============================================
+       الهيرو
+    ============================================ */
+
+    .hero-grid{
+        min-height:auto !important;
+        padding-top:20px !important;
+        padding-bottom:20px !important;
+        gap:20px !important;
+    }
+
+    .hero-visual{
+        min-height:auto !important;
+        height:auto !important;
+        padding:0 !important;
+        margin:0 !important;
+    }
+
+    .hero h1{
+        font-size:49px;
+        letter-spacing:-2px;
+    }
+
+    .lead{
+        font-size:15px;
+    }
+
+    .hero-mini{
+        gap:18px;
+        margin-top:35px;
+    }
+
+    .hero-mini strong{
+        font-size:17px;
+    }
+
+    .logo-card{
+        width:100% !important;
+        max-width:320px !important;
+        padding:22px 16px 18px !important;
+        margin:0 auto !important;
+    }
+
+    .logo-card img{
+        width:100% !important;
+        max-width:190px !important;
+        height:auto !important;
+        display:block;
+        margin:0 auto;
+    }
+
+    .logo-card span{
+        font-size:8px !important;
+        letter-spacing:2px !important;
+        margin-top:12px !important;
+    }
+
+    .floating-card{
+        display:none !important;
+    }
+
+    .section{
+        padding:75px 0;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .values-grid{
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .section-title h2{
+        font-size:39px;
+    }
+
+    .about .section-title h2{
+        font-size:42px;
+        white-space:normal;
+    }
+
+    .about-text .big{
+        font-size:19px;
+    }
+
+    .vision-card{
+        min-height:0;
+
+        padding:
+            30px
+            25px
+            34px;
+    }
+
+    .vision-card .card-kicker{
+        font-size:14px;
+    }
+
+    .vision-card h3{
+        font-size:24px;
+    }
+
+    .vision-card p{
+        font-size:14px;
+        line-height:2;
+    }
+
+    /* ============================================
+       خدماتنا
+    ============================================ */
+
+    .services-grid{
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+
+    .service-image{
+        display: flex !important;
+        height: 140px !important;
+        padding: 10px !important;
+    }
+
+    .service-image img{
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+        min-height: 0 !important;
+    }
+
+    .service-content{
+        padding: 12px 10px 14px !important;
+        text-align: center !important;
+    }
+
+    .service-content h3{
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 4px !important;
+    }
+
+    .service-content p{
+        display: block !important;
+        font-size: 11px !important;
+        line-height: 1.6 !important;
+    }
+
+    .service-number{
+        top: 8px !important;
+        right: 8px !important;
+        min-width: 26px !important;
+        height: 22px !important;
+        font-size: 10px !important;
+        padding: 0 6px !important;
+        border-radius: 6px !important;
+    }
+
+    /* ============================================
+       الكونتاكت
+    ============================================ */
+
+    .contact-item{
+        grid-template-columns:
+            90px
+            1fr
+            20px;
+
+        padding:15px;
+    }
+
+    .contact-item b,
+    .contact-item b *,
+    .contact-item a,
+    .contact-item a *,
+    .contact-ltr {
+        font-size: 14px !important;
+    }
+
+    .contact-intro h2,
+    .contact-section .section-title h2 {
+        font-size: 40px;
+    }
+
+    .about .eyebrow,
+    .dark-section .eyebrow,
+    .values .eyebrow,
+    .services .eyebrow,
+    .contact-section .eyebrow {
+        font-size: 18px;
+    }
+
+    /* ============================================
+       الفوتر على الجوال
+    ============================================ */
+
+    footer{
+        padding:26px 0 18px !important;
+    }
+
+    .footer-inner{
+        flex-direction:column !important;
+        gap:12px !important;
+        margin-bottom:14px !important;
+    }
+
+    .footer-right,
+    .footer-center,
+    .footer-left{
+        width:100% !important;
+        text-align:center !important;
+    }
+
+    .footer-inner img{
+        width:90px !important;
+        margin:0 auto !important;
+    }
+
+    .social-links{
+        gap:12px !important;
+        padding-top:14px !important;
+    }
+
+    .social-links svg{
+        width:18px !important;
+        height:18px !important;
+    }
+
+    .social-handle{
+        font-size:12px !important;
+    }
+
+    /* منع التمرير الأفقي */
+    html, body{
+        overflow-x: hidden !important;
+        max-width: 100% !important;
+    }
+}
+
+
+/* =====================================================
+   MOBILE (أقل من 700px)
+===================================================== */
+
+@media(max-width:700px){
+
+    .container{
+        width:min(
+            calc(100% - 28px),
+            1120px
+        );
+    }
+
+    /* ============================================
+       الهيدر: يمتد بعرض الشاشة + غير ثابت
+    ============================================ */
+
+    .nav{
+        position:static !important;      /* يتحرك مع الصفحة */
+        width:100% !important;           /* يمتد كامل العرض */
+        max-width:100% !important;       /* بدون قيود */
+        height:75px !important;
+        padding:0 14px !important;
+
+        /* لإلغاء تأثير .container الداخلي */
+        margin:0 !important;
+
+        background:transparent;
+    }
+
+    /* ملاحظة: الهيدر له كلاس "container" في HTML،
+       لذلك نلغي عرضه المحدود: */
+    .nav.container{
+        width:100% !important;
+        max-width:100% !important;
+        margin:0 !important;
+    }
+
+    .nav-logo img{
+        width:125px;
+    }
+
+    .nav-cta{
+        font-size:11px;
+        padding:7px 10px;
+    }
+
+    /* إخفاء الروابط على الجوال */
+    .nav-links{
+        display:none !important;
+    }
+
+    /* ============================================
+       الهيرو
+    ============================================ */
+
+    .hero{
+        min-height:auto !important;
+        padding-top:20px !important;
+        padding-bottom:20px !important;
+    }
+
+    .hero-grid{
+        min-height:auto !important;
+        padding-top:20px !important;
+        padding-bottom:20px !important;
+        gap:20px !important;
+    }
+
+    .hero-visual{
+        min-height:auto !important;
+        height:auto !important;
+        padding:0 !important;
+        margin:0 !important;
+    }
+
+    .hero h1{
+        font-size:49px;
+        letter-spacing:-2px;
+    }
+
+    .lead{
+        font-size:15px;
+    }
+
+    .hero-mini{
+        gap:18px;
+        margin-top:35px;
+    }
+
+    .hero-mini strong{
+        font-size:17px;
+    }
+
+    .logo-card{
+        width:100% !important;
+        max-width:320px !important;
+        padding:22px 16px 18px !important;
+        margin:0 auto !important;
+    }
+
+    .logo-card img{
+        width:100% !important;
+        max-width:190px !important;
+        height:auto !important;
+        display:block;
+        margin:0 auto;
+    }
+
+    .logo-card span{
+        font-size:8px !important;
+        letter-spacing:2px !important;
+        margin-top:12px !important;
+    }
+
+    .floating-card{
+        display:none !important;
+    }
+
+    .section{
+        padding:75px 0;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .values-grid{
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .section-title h2{
+        font-size:39px;
+    }
+
+    .about .section-title h2{
+        font-size:42px;
+        white-space:normal;
+    }
+
+    .about-text .big{
+        font-size:19px;
+    }
+
+    .vision-card{
+        min-height:0;
+        padding:
+            30px
+            25px
+            34px;
+    }
+
+    .vision-card .card-kicker{
+        font-size:14px;
+    }
+
+    .vision-card h3{
+        font-size:24px;
+    }
+
+    .vision-card p{
+        font-size:14px;
+        line-height:2;
+    }
+
+    /* ============================================
+       خدماتنا
+    ============================================ */
+
+    .services-grid{
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+
+    .service-image{
+        display: flex !important;
+        height: 140px !important;
+        padding: 10px !important;
+    }
+
+    .service-image img{
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+        min-height: 0 !important;
+    }
+
+    .service-content{
+        padding: 12px 10px 14px !important;
+        text-align: center !important;
+    }
+
+    .service-content h3{
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 4px !important;
+    }
+
+    .service-content p{
+        display: block !important;
+        font-size: 11px !important;
+        line-height: 1.6 !important;
+    }
+
+    .service-number{
+        top: 8px !important;
+        right: 8px !important;
+        min-width: 26px !important;
+        height: 22px !important;
+        font-size: 10px !important;
+        padding: 0 6px !important;
+        border-radius: 6px !important;
+    }
+
+    /* ============================================
+       الكونتاكت
+    ============================================ */
+
+    .contact-item{
+        grid-template-columns:
+            90px
+            1fr
+            20px;
+
+        padding:15px;
+    }
+
+    .contact-item b,
+    .contact-item b *,
+    .contact-item a,
+    .contact-item a *,
+    .contact-ltr {
+        font-size: 14px !important;
+    }
+
+    .contact-intro h2,
+    .contact-section .section-title h2 {
+        font-size: 40px;
+    }
+
+    .about .eyebrow,
+    .dark-section .eyebrow,
+    .values .eyebrow,
+    .services .eyebrow,
+    .contact-section .eyebrow {
+        font-size: 18px;
+    }
+
+    /* ============================================
+       الفوتر على الجوال
+    ============================================ */
+
+    footer{
+        padding:26px 0 18px !important;
+    }
+
+    .footer-inner{
+        flex-direction:column !important;
+        gap:12px !important;
+        margin-bottom:14px !important;
+    }
+
+    .footer-right,
+    .footer-center,
+    .footer-left{
+        width:100% !important;
+        text-align:center !important;
+    }
+
+    .footer-inner img{
+        width:90px !important;
+        margin:0 auto !important;
+    }
+
+    .social-links{
+        gap:12px !important;
+        padding-top:14px !important;
+    }
+
+    .social-links svg{
+        width:18px !important;
+        height:18px !important;
+    }
+
+    .social-handle{
+        font-size:12px !important;
+    }
+
+    /* منع التمرير الأفقي */
+    html, body{
+        overflow-x: hidden !important;
+        max-width: 100% !important;
+    }
+}
+
+
+/* =====================================================
+   شاشات كبيرة (أكبر من 1400px)
+===================================================== */
+
+@media (min-width: 1400px) {
+
+    .contact-item b,
+    .contact-item b *,
+    .contact-item a,
+    .contact-item a *,
+    .contact-ltr {
+        font-size: 15px !important;
+    }
+
+}
