@@ -1250,6 +1250,28 @@ footer{
         padding:7px 10px;
     }
 
+    /* ============================================
+       1) الهيرو: منع الفراغ أسفل بطاقة الشعار
+    ============================================ */
+
+    .hero{
+        min-height:auto !important;
+        padding-bottom:30px;
+    }
+
+    .hero-grid{
+        min-height:auto !important;
+        padding-bottom:20px !important;
+        gap:20px !important;
+        padding-top:20px;
+    }
+
+    .hero-visual{
+        min-height:auto !important;
+        padding:0 !important;
+        margin-top:10px;
+    }
+
     .hero h1{
         font-size:49px;
         letter-spacing:-2px;
@@ -1268,16 +1290,27 @@ footer{
         font-size:17px;
     }
 
-    .hero-visual{
-        min-height:390px;
-    }
-
     .logo-card{
-        width:95%;
-        padding:30px 15px 22px;
+        width:100% !important;
+        max-width:340px;
+        padding:24px 16px 20px !important;
+        margin:0 auto;
     }
 
-    /* 1) إخفاء البطاقات العائمة (أمان / ذكاء) */
+    .logo-card img{
+        width:100% !important;
+        max-width:200px !important;
+        height:auto !important;
+        margin:0 auto;
+    }
+
+    .logo-card span{
+        font-size:8px !important;
+        letter-spacing:2px !important;
+        margin-top:14px !important;
+    }
+
+    /* إخفاء البطاقات العائمة (أمان / ذكاء) */
     .floating-card{
         display:none !important;
     }
@@ -1331,36 +1364,43 @@ footer{
     }
 
     /* ============================================
-       2) خدماتنا: 3 في الصف + إخفاء الصور
+       2) خدماتنا: عمودان + إظهار الصور
     ============================================ */
 
     .services-grid{
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 10px !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
     }
 
-    .service-image,
+    .service-image{
+        display: flex !important;
+        height: 140px !important;
+        padding: 10px !important;
+    }
+
     .service-image img{
-        display: none !important;
-    }
-
-    .service-card{
-        padding-top: 8px;
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+        min-height: 0 !important;
     }
 
     .service-content{
-        padding: 14px 8px 16px !important;
+        padding: 12px 10px 14px !important;
         text-align: center !important;
     }
 
     .service-content h3{
-        font-size: 12px !important;
+        font-size: 13px !important;
         line-height: 1.5 !important;
-        margin-bottom: 6px !important;
+        margin-bottom: 4px !important;
     }
 
     .service-content p{
-        display: none !important;
+        display: block !important;
+        font-size: 11px !important;
+        line-height: 1.6 !important;
     }
 
     .service-number{
@@ -1369,7 +1409,7 @@ footer{
         min-width: 26px !important;
         height: 22px !important;
         font-size: 10px !important;
-        padding: 0 5px !important;
+        padding: 0 6px !important;
         border-radius: 6px !important;
     }
 
@@ -1410,6 +1450,10 @@ footer{
        4) الفوتر عمودي ومركزي
     ============================================ */
 
+    footer{
+        padding: 24px 0 18px !important;
+    }
+
     .footer-inner{
         flex-direction: column !important;
         align-items: center !important;
@@ -1418,15 +1462,24 @@ footer{
         gap: 14px !important;
     }
 
-    .footer-inner .footer-right,
-    .footer-inner .footer-center,
-    .footer-inner .footer-left{
+    .footer-inner > div{
         width: 100% !important;
         text-align: center !important;
     }
 
     .footer-inner img{
-        width:95px;
+        width:90px !important;
+        margin: 0 auto;
+        display: block;
+    }
+
+    /* ============================================
+       5) منع التمرير الأفقي
+    ============================================ */
+
+    html, body{
+        overflow-x: hidden !important;
+        max-width: 100% !important;
     }
 }
 
@@ -1457,9 +1510,24 @@ footer{
         font-size: 11px !important;
     }
 
+    .services-grid{
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+    }
+
+    .service-image{
+        height: 110px !important;
+    }
+
+    .logo-card img{
+        max-width: 160px !important;
+    }
+
 }
 
+
 /* ===== روابط التواصل الاجتماعي في الفوتر ===== */
+
 .social-links {
     display: flex;
     align-items: center;
@@ -1522,95 +1590,12 @@ footer{
     width: 18px;
     height: 18px;
 }
+
+
 /* =====================================================
    شاشات كبيرة (كمبيوتر أكبر من 1400px)
 ===================================================== */
-/* ===== إصلاحات الجوال ===== */
-@media (max-width: 768px) {
 
-    /* الفوتر */
-    .footer-inner {
-        flex-direction: column;
-        gap: 12px;
-        text-align: center;
-        padding: 20px 16px;
-    }
-
-    .footer-right img {
-        max-width: 120px;
-        height: auto;
-    }
-
-    .footer-center {
-        font-size: 0.85rem;
-        letter-spacing: 1px;
-    }
-
-    .footer-left {
-        font-size: 0.8rem;
-    }
-
-    /* روابط التواصل الاجتماعي */
-    .social-links {
-        gap: 12px;
-        padding: 16px 12px;
-    }
-
-    .social-links svg {
-        width: 20px;
-        height: 20px;
-    }
-
-    .social-handle,
-    .social-whatsapp {
-        font-size: 0.85rem;
-    }
-
-    /* بطاقة الشعار في الهيرو */
-    .logo-card {
-        padding: 24px 16px;
-    }
-
-    .logo-card img {
-        max-width: 180px;
-        height: auto;
-    }
-
-    /* صور الخدمات */
-    .service-image img {
-        width: 100%;
-        height: auto;
-        display: block;
-        object-fit: cover;
-        min-height: 160px;
-        background: #f0f4f5;
-    }
-
-    /* شبكة الخدمات */
-    .services-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-
-    /* قسم التواصل */
-    .contact-wrap {
-        padding: 0 16px;
-    }
-
-    .contact-item {
-        padding: 14px 16px;
-    }
-
-    .contact-item b {
-        font-size: 0.9rem;
-        word-break: break-word;
-    }
-
-    /* منع التمرير الأفقي */
-    body, html {
-        overflow-x: hidden;
-    }
-}
 @media (min-width: 1400px) {
 
     .contact-item b,
@@ -1621,8 +1606,4 @@ footer{
         font-size: 15px !important;
     }
 
-}
-
-.services-grid {
-    direction: rtl;
 }
